@@ -46,6 +46,9 @@ function takePhoto() {
         // Display the captured image on the webpage
         photo.src = imgData;
         screenshotDiv.style.display = 'block'; // Show the image section
+
+        // Automatically trigger a download of the captured photo
+        downloadImage(imgData, 'photo.png');
     } else {
         console.error("Video not yet ready.");
     }
@@ -61,5 +64,16 @@ function takeScreenshot() {
         screenshotImage.src = img;
         // Show the screenshot section
         screenshotDiv.style.display = 'block';
+
+        // Automatically trigger a download of the captured screenshot
+        downloadImage(img, 'screenshot.png');
     });
+}
+
+// Function to trigger the download of the image
+function downloadImage(dataUrl, filename) {
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = filename;
+    a.click();  // Trigger download
 }
